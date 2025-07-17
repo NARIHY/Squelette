@@ -1,6 +1,6 @@
-﻿using Lovox.Models.Entities.User;
-using Lovox.Repositories.Implementations.Users;
-using Lovox.Repositories.Interfaces.Users;
+﻿using Squelette.Models.Entities.User;
+using Squelette.Repositories.Implementations.Users;
+using Squelette.Repositories.Interfaces.Users;
 using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Lovox.View.Admin
+namespace Squelette.View.Admin
 {
     /// <summary>
     /// Logique d'interaction pour AdministrationTableauDeBord.xaml
