@@ -1,0 +1,99 @@
+﻿<Controls:MetroWindow x:Class="Lovox.View.Admin.AdministrationDashboard"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                      mc:Ignorable="d"
+                      Title="Tableau de bord - Administration"
+                      Height="600"
+                      Width="1000"
+                      GlowBrush="SteelBlue"
+                      WindowStartupLocation="CenterScreen">
+
+    <Controls:MetroWindow.Resources>
+        <ResourceDictionary>
+            <!-- Template pour les items principaux -->
+            <DataTemplate x:Key="HamburgerMenuItem" DataType="{x:Type Controls:HamburgerMenuIconItem}">
+                <StackPanel Orientation="Horizontal" Margin="4">
+                    <iconPacks:PackIconMaterial Kind="{Binding Icon}"
+                                                Width="22" Height="22"
+                                                VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding Label}"
+                               Margin="12,0,0,0"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </DataTemplate>
+
+            <!-- Template pour les options du bas -->
+            <DataTemplate x:Key="HamburgerOptionsMenuItem" DataType="{x:Type Controls:HamburgerMenuIconItem}">
+                <StackPanel Orientation="Horizontal" Margin="4">
+                    <iconPacks:PackIconMaterial Kind="{Binding Icon}"
+                                                Width="22" Height="22"
+                                                VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding Label}"
+                               Margin="12,0,0,0"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Controls:MetroWindow.Resources>
+
+    <Controls:HamburgerMenu x:Name="HamburgerMenuControl"
+                            DisplayMode="CompactInline"
+                            HamburgerWidth="48"
+                            PanePlacement="Left"
+                            ItemInvoked="HamburgerMenuControl_OnItemInvoked"
+                            ItemTemplate="{StaticResource HamburgerMenuItem}"
+                            OptionsItemTemplate="{StaticResource HamburgerOptionsMenuItem}">
+
+        <!-- Header du menu -->
+        <Controls:HamburgerMenu.HamburgerMenuHeaderTemplate>
+            <DataTemplate>
+                <TextBlock Text="Admin"
+                           FontSize="20"
+                           Foreground="White"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="10"/>
+            </DataTemplate>
+        </Controls:HamburgerMenu.HamburgerMenuHeaderTemplate>
+
+        <!-- Menu principal -->
+        <Controls:HamburgerMenu.ItemsSource>
+            <Controls:HamburgerMenuItemCollection>
+                <Controls:HamburgerMenuIconItem Icon="Home" Label="Dashboard" Tag="Dashboard"/>
+                <Controls:HamburgerMenuIconItem Icon="Account" Label="Utilisateurs" Tag="Users"/>
+                <Controls:HamburgerMenuIconItem Icon="ChartBar" Label="Statistiques" Tag="Stats"/>
+                <Controls:HamburgerMenuIconItem Icon="Cog" Label="Paramètres" Tag="Settings"/>
+            </Controls:HamburgerMenuItemCollection>
+        </Controls:HamburgerMenu.ItemsSource>
+
+        <!-- Menu secondaire (bas) -->
+        <Controls:HamburgerMenu.OptionsItemsSource>
+            <Controls:HamburgerMenuItemCollection>
+                <Controls:HamburgerMenuIconItem Icon="Logout" Label="Déconnexion" Tag="Logout"/>
+            </Controls:HamburgerMenuItemCollection>
+        </Controls:HamburgerMenu.OptionsItemsSource>
+
+        <!-- Contenu principal -->
+        <Controls:HamburgerMenu.ContentTemplate>
+            <DataTemplate>
+                <Grid>
+                    <TextBlock Text="Bienvenue dans l'administration"
+                               FontSize="24" FontWeight="SemiBold"
+                               Foreground="DarkSlateGray"
+                               Margin="20"/>
+
+                    <WrapPanel Margin="20,60,0,0" ItemHeight="150" ItemWidth="200" HorizontalAlignment="Left">
+                        <Controls:Tile Title="Utilisateurs" Background="LightSteelBlue" Margin="10"/>
+                        <Controls:Tile Title="Rapports" Background="LightSalmon" Margin="10"/>
+                        <Controls:Tile Title="Paramètres" Background="LightGreen" Margin="10"/>
+                    </WrapPanel>
+                </Grid>
+            </DataTemplate>
+        </Controls:HamburgerMenu.ContentTemplate>
+    </Controls:HamburgerMenu>
+</Controls:MetroWindow>
